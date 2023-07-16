@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { FoodData } from '../interfaces/FoodData'
 
 interface Food extends FoodData {
