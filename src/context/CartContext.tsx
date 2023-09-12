@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { toast } from 'react-toastify'
+
 import { FoodData } from '../interfaces/FoodData'
 
 interface Food extends FoodData {
@@ -45,7 +47,7 @@ export function CartProvider({ children }: CartProviderProps) {
         return item
       })
 
-      console.log(`Item ${food.food} ${food.name} adicionado aos pedidos!`)
+      toast.success(`Item ${food.food} ${food.name} adicionado aos pedidos!`)
       setCart(newCart)
 
       return
@@ -54,7 +56,7 @@ export function CartProvider({ children }: CartProviderProps) {
     const newFood = { ...food, quantity: 1, subtotal: food.price }
     const newCart = [...cart, newFood]
 
-    console.log(`Item ${food.food} ${food.name} adicionado aos pedidos!`)
+    toast.success(`${food.food} ${food.name} adicionado aos pedidos!`)
     setCart(newCart)
   }
 
