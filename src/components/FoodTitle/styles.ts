@@ -26,8 +26,7 @@ export const Title = styled.h1`
     font-size: ${({theme}) => theme.fontSize['3xl']};
     justify-content: center;
 
-    &::before {
-      display: none;
+    
     }
   }
 

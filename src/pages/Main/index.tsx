@@ -5,11 +5,14 @@ import { Sidebar } from '../../components/Sidebar'
 
 import { Container } from './styles'
 
+import logo from '../../assets/logo.svg'
+
 export default function Main() {
   return (
     <Container>
       <Sidebar />   
       <section>
+        <img src={logo} alt="Logotipo" />
         <Outlet />
       </section>  
       <MyOrder />

@@ -9,8 +9,7 @@ export function SkeletonFood() {
         <Skeleton type='title' />
         <Skeleton type='thumbnail' />
         <Skeleton type='text' />
-        <Skeleton type='text' />
-
+        
         <div>
           <Skeleton type='title' />
           <Skeleton type='image' />

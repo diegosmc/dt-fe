@@ -4,6 +4,9 @@ import { ConfirmOrder } from '../../../components/OrderClosed/ConfirmOrder'
 
 import { currencyFormats } from '../../../helpers/currencyFormats'
 
+import plusImg from '../../../assets/circle-plus.svg'
+import minusImg from '../../../assets/circle-minus.svg'
+
 import { Container } from './styles'
 
 export function Table() {
@@ -31,7 +34,23 @@ export function Table() {
                 <h4>{item.name}</h4>
                 <span>{currencyFormats(item.price)}</span>
               </td>
-              <td>{item.quantity}</td>
+              <td>
+                <div>
+                  <button 
+                  type='button'
+                  onClick={() => console.log(`decrementar pedido`, item)}
+                  >
+                    <img src={minusImg} alt='Reduzir quantidade'/>
+                  </button>
+                <span>{`${item.quantity}`.padStart(2, '0')}</span>
+                <button 
+                  type='button'
+                  onClick={() => console.log(`incrementar pedido`, item)}
+                  >
+                    <img src={plusImg} alt='Aumentar quantidade' />
+                  </button>
+                </div>
+                </td>
               <td>
                 <h5>{currencyFormats(item.subtotal)}</h5>
               </td>

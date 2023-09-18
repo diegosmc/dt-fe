@@ -6,7 +6,7 @@ import { FoodTitle } from '../../../components/FoodTitle'
 import { Foods } from '../../../components/Foods'
 
 export default function Pizzas () {
-  const {  pizzas } = useFood()
+  const { pizzas } = useFood()
   
   return (
     <>
