@@ -12,7 +12,7 @@ export default function Main() {
     <Container>
       <Sidebar />   
       <section>
-        <img src={logo} alt="Logotipo" />
+        <img className='logo' src={logo} alt="Logotipo" />
         <Outlet />
       </section>  
       <MyOrder />

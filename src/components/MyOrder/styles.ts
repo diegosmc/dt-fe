@@ -6,6 +6,7 @@ export const Container = styled(Link)`
   position: absolute;
   right: 1.5rem;
   bottom: 0.5rem;
+  z-index: 999;
 
   background: ${({ theme }) => theme.colors.white};
   padding: 0.5rem 1rem;
