@@ -6,16 +6,20 @@ import { Sidebar } from '../../components/Sidebar'
 import { Container } from './styles'
 
 import logo from '../../assets/logo.svg'
+import { NavbarFooter } from '../../components/NavbarFooter'
+import { NavbarHeader } from '../../components/NavbarHeader'
 
 export default function Main() {
   return (
     <Container>
-      <Sidebar />   
-      <section>
+      {/* <NavbarHeader /> */}
+      <Sidebar />
+      <section id='main'>
         <img className='logo' src={logo} alt="Logotipo" />
         <Outlet />
-      </section>  
+      </section>
       <MyOrder />
+      {/* <NavbarFooter /> */}
     </Container>
   )
 }

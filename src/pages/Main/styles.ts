@@ -8,7 +8,7 @@ export const Container = styled.main`
   grid-template-columns: 150px 1fr;
   grid-template-rows: 1fr;
   grid-gap: 50px;
-  @media (max-width: 720px) {
+  @media (max-width: 1024px) {
     grid-template-areas: 'aside' 'section';
     grid-template-columns: 1fr;
     grid-template-rows: 150px 1fr;
@@ -20,12 +20,14 @@ export const Container = styled.main`
     height: 100%;
   }
 
-  & > section {
+  & > section#main {
     width: 100%;
     height: 100%;
+    max-height: 100vh;
     grid-area: section;
     width: 100%;
     padding: 0 2rem;
+    overflow-y: auto;
     
     img.logo {
       max-width: 70px;
@@ -34,7 +36,7 @@ export const Container = styled.main`
       height: 100%;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 1024px) {
       text-align: center;
     }
   }

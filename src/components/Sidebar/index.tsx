@@ -16,26 +16,27 @@ export function Sidebar() {
   }
 
   return (
-  <Container isMenuOpen={menuOpen}>
-    <button type = 'button' onClick={handleToggleMenu}>
-      <img src={menuImg} alt='Abrir / Fechar o menu' />
-    </button>
-    <nav>
-      <ul>
-        <li>
-        <NavLink to="/">
-        <PizzaIcon />
-          <span>Pizzas</span>
-       </NavLink>
-    </li>
-    <li>
-      <NavLink to="bebidas">
-        <DrinkIcon />
-          <span>Bebidas</span>
-       </NavLink>
-    </li>
-  </ul>
-</nav>
-
-</Container>
-)}
+    <Container isMenuOpen={menuOpen}>
+      {/* <button type='button' onClick={handleToggleMenu}>
+        <img src={menuImg} alt='Abrir / Fechar o menu' />
+      </button> */}
+      
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/">
+              <PizzaIcon />
+              <span>Pizzas</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="bebidas">
+              <DrinkIcon />
+              <span>Bebidas</span>
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </Container>
+  )
+}
