@@ -4,8 +4,6 @@ import { currencyFormats } from '../../../helpers/currencyFormats';
 
 import { Container } from '../style';
 
-import { useState } from 'react';
-
 export function PayOrder() {
   const { cart } = useCart();
   
@@ -15,7 +13,7 @@ export function PayOrder() {
     <Container>
       <button type='submit'>Finalizar Pedido</button>
       <span>
-        Pedido Concluido <strong>{currencyFormats(totalAmount)}</strong>
+      Total <strong>{currencyFormats(totalAmount)}</strong>
         
       </span>
     </Container>
