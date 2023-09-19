@@ -26,9 +26,26 @@ interface CartProviderProps {
 
 export const CartContext = createContext({} as CartContextProps)
 
+const localStorageKey = '@FoodDelivery:cart'
+
 export function CartProvider({ children }: CartProviderProps) {
   const navigate = useNavigate()
-  const [cart, setCart] = useState<Food[]>([])
+  const [cart, setCart] = useState<Food[]>(() => {
+    const getLs = (localStorage.getItem('localStorageKey'))
+    if (getLs) return JSON.parse(getLs)
+
+
+    return []
+  })
+
+  function saveLs(items: Food[]){
+    setCart(items)
+    localStorage.setItem(localStorageKey, JSON.stringify(items))
+  }
+
+  function clearLs() {
+    localStorage.removeItem(localStorageKey)
+  }
 
   function addFoodIntoCart(food: FoodData): void {
     const foodExistentInCart = cart.find(
@@ -48,7 +65,7 @@ export function CartProvider({ children }: CartProviderProps) {
       })
 
       toast.success(`Item ${food.food} ${food.name} adicionado aos pedidos!`)
-      setCart(newCart)
+      saveLs(newCart)
 
       return
     }
@@ -57,13 +74,13 @@ export function CartProvider({ children }: CartProviderProps) {
     const newCart = [...cart, newFood]
 
     toast.success(`${food.food} ${food.name} adicionado aos pedidos!`)
-    setCart(newCart)
+    saveLs(newCart)
   }
 
   function delFoodFromCart(food: Food) {
     const newCart = cart.filter((item) => !(item.id === food.id && item.food === food.food))
 
-    setCart(newCart)
+    saveLs(newCart)
   }
 
   function updateFoodQuantity(food: Food, newQuantity: number) {
@@ -83,7 +100,7 @@ export function CartProvider({ children }: CartProviderProps) {
       return item
     })
 
-    setCart(newCart)
+    saveLs(newCart)
   }
 
   function foodCartIncrement(food: Food) {
@@ -99,6 +116,8 @@ export function CartProvider({ children }: CartProviderProps) {
   }
 
   function payOrder() {
+    console.log()
+    clearLs()
     return
   }
 
