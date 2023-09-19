@@ -3,21 +3,29 @@ import { PayOrder } from '../../components/OrderClosed/PayOrder'
 import { OrderHeader } from '../../components/OrderHeader'
 
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup' 
 
 import { Container, Inner, Form } from './styles'
 
-type FieldFormValues = {
-  fullName: string
-  email: string
-  mobile: string
-}
+const schema = yup
+  .object({
+    fullName: yup.string().required('Este campo é obrigatório.!'),
+    email: yup.string().email().required('O preenchimento de e-mail é obrigatório'),
+    mobile: yup.string().required('Você deve informar um telefone'),
+  })
+  .required()
+
+type FieldFormValues = yup.InferType<typeof schema>
 
 export default function Payment() {
   const{
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldFormValues>()
+  } = useForm<FieldFormValues>({
+    resolver: yupResolver(schema),
+  })
   const onSubmit: SubmitHandler<FieldFormValues> = (data) => console.log(data)
 
   return (
@@ -30,21 +38,22 @@ export default function Payment() {
 
           <div className='field'>
             <label htmlFor='fullName'>Nome e sobrenome</label>
-            <input type='text' id='fullName' autoComplete='name' {...register('fullName', { required: true })} />
-            {errors.fullName && <p className='error'> Este campo é obrigatório.!</p>}
-
+            <input type='text' id='fullName' autoComplete='name' {...register('fullName')} />
+            {errors.fullName && <p className='error'>{errors.fullName.message}</p>}
           </div>
           
           <div className='grouped'>
 
             <div className='field'>
               <label htmlFor='email'>E-mail</label>
-              <input type='email' id='email' name='email' autoComplete='email' />            
+              <input type='email' id='email' autoComplete='email' {...register('email')} />
+              {errors.email && <p className='error'>{errors.email.message}</p>}            
             </div>
 
             <div className='field'>
               <label htmlFor='mobile'>Celular</label>
-              <input type='tel' id='mobile' name='mobile' autoComplete='phone' />            
+              <input type='tel' id='mobile' autoComplete='phone' {...register('mobile')} />
+              {errors.mobile && <p className='error'>{errors.mobile.message}</p>}            
             </div>
 
             <div className='field'>
