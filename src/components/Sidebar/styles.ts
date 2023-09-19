@@ -7,8 +7,7 @@ interface ContainerProps {
 export const Container = styled.aside<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.white};
   width: ${({ isMenuOpen }) => (isMenuOpen ? "16.3rem" : "7.75rem")};
-  padding: 2rem 0;
-  overflow: hidden;
+  // padding: 2rem 0;
 
   display: flex;
   flex-direction: column;
@@ -23,11 +22,17 @@ export const Container = styled.aside<ContainerProps>`
 
   nav {
     width: 100%;
-    padding: 10px 0;
+    height: 100%;
     ul {
       display: flex;
       flex-direction: column;
       gap: 3rem;
+      height: 100%;
+
+      @media (max-width: 1024px) {
+        flex-direction: row;
+        justify-content: center;
+      }
       
       li {
         &:last-child {
@@ -58,19 +63,21 @@ export const Container = styled.aside<ContainerProps>`
           &.active {
             position: relative;
 
-            &::after {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 50%;
-              bottom: 0;
-              transform: translateY(-50%);
+            @media (min-width: 1024px) {
+              &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                bottom: 0;
+                transform: translateY(-50%);
 
-              background-color: ${({ theme }) => theme.colors.red};
-              width: 5px;
-              height: calc(100% + 10px);
+                background-color: ${({ theme }) => theme.colors.red};
+                width: 5px;
+                height: 100%;
 
-              border-radius: 0 5px 5px 0;
+                border-radius: 0 5px 5px 0;
+              }
             }
 
             svg {

@@ -2,42 +2,57 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   width: 100%;
-  min-height: 100vh;
+  max-height: 100vh;
+  height: 100%;
   display: grid;
-  grid-template-areas: 'aside section';
-  grid-template-columns: 150px 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 50px;
-  @media (max-width: 1024px) {
-    grid-template-areas: 'aside' 'section';
-    grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr;
-  }
+  grid-template-areas: 'header' 'content' 'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 120px 1fr 50px;
+  grid-gap: 0px;
+  // @media (min-width: 1025px) {
+  //   grid-template-areas: 'aside section';
+  //   grid-template-columns: 150px 1fr;
+  //   grid-template-rows: 1fr;
+  // }
 
-  & > aside {
-    grid-area: aside;
+  & > section#navbarHeader,
+  & > section#navbarFooter {
+    max-width: 100vw;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    align-items: end;
   }
+
+  & > section#navbarHeader {
+    grid-area: header;
+  }
+
+  & > section#navbarFooter {
+    grid-area: footer;
+  }
+
+  // & > aside {
+  //   grid-area: aside;
+  //   width: 100%;
+  //   height: 100%;
+  //   overflow: hidden;
+  //   padding: 10px 0;
+  // }
 
   & > section#main {
     width: 100%;
+    max-width: 100vw;
     height: 100%;
-    max-height: 100vh;
-    grid-area: section;
+    grid-area: content;
     width: 100%;
-    padding: 0 2rem;
-    overflow-y: auto;
+    padding: 2rem 1rem 5rem;
     
     img.logo {
       max-width: 70px;
       max-height: 70px;
       width: 100%;
       height: 100%;
-    }
-
-    @media (max-width: 1024px) {
-      text-align: center;
     }
   }
 `
