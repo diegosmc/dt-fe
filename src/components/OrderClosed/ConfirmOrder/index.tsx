@@ -11,11 +11,14 @@ export function ConfirmOrder() {
 
   return (
     <Container>
-      <button type='button' onClick={confirmOrder}>Finalizar Pedido</button>
+      <span>
+        Total sem entrega:
+      </span>
       <span>
         <strong>{currencyFormats(totalAmount)}</strong>
       </span>
-    
+
+      <button type='button' onClick={confirmOrder}>Continuar</button>
     </Container>
   )
 }

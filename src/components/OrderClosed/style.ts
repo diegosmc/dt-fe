@@ -2,40 +2,50 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.footer`
-  padding-top: 1.5rem;
+  padding: 1.5rem 2.5rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  background: #f3f5f7;
+
+  border-top: 1px solid hsl(220, 12%, 95%);
 
   button {
-    background: ${({ theme }) => theme.colors.red};
+    background: ${({ theme }) => theme.colors.teal};
+    background: #097bc3;
     width: 100%;
-    max-width: 16.5rem;
-    min-height: 4rem;
-    border: none;
+    padding: 0.75rem 1.5rem;
+    border: 0 none !important;
     border-radius: 8px;
-    font-weight: 700;
+    // font-weight: 600;
+    letter-spacing: 0.05rem;
     font-size: 1.25rem;
-    text-transform: uppercase;
     color: ${({ theme }) => theme.colors.white};
     transition: background 0.3s;
 
     &:hover {
-      background: ${darken(0.1, '#AA2424')};
+      background: ${darken(0.1, '#097bc3')};
     }
   }
 
   span {
-    font-weight: 500;
-    text-align: center;
-    text-transform: uppercase;
+    font-weight: 300;
     position: relative;
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 1rem;
 
     strong {
-      margin-left: 8.75rem;
+      display: block;
+      text-align: right;
       font-weight: 800;
-      font-size: 3.25rem;
+      font-size: 1.5rem;
       color: ${({ theme }) => theme.colors.red};
+
+      color: ${({ theme }) => theme.colors.gray800};
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .fade-in {

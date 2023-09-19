@@ -4,61 +4,68 @@ import { ConfirmOrder } from '../../../components/OrderClosed/ConfirmOrder'
 
 import { currencyFormats } from '../../../helpers/currencyFormats'
 
-import plusImg from '../../../assets/circle-plus.svg'
-import minusImg from '../../../assets/circle-minus.svg'
+import plusImg from '../../../assets/add.svg'
+import minusImg from '../../../assets/minus.svg'
+import deleteIcon from '../../../assets/trash.svg'
 
 import { Container } from './styles'
 
 export function Table() {
 
-  const { cart } = useCart()
+  const { cart, delFoodFromCart, foodCartDecrement, foodCartIncrement } = useCart()
+
+  if (cart.length === 0) {
+    return (
+      <Container>
+        <p>Nenhum item adicionado ao carrinho</p>
+        <ConfirmOrder />
+      </Container>
+    )
+  }
   return (
     <Container>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Lanche</th>
-            <th>Qtd</th>
-            <th>Subtotal</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map((item) => (
-            <tr key={`${item.food}-${item.id}`}>
-              <td>
-                <img src={item.image} alt={item.name} />
-              </td>
-              <td>
+      <ol>
+        {cart.map((item) => (
+          <li key={`${item.food}-${item.id}`}>
+            <div className="productBox">
+              <img src={item.image} alt={item.name} />
+              <div>
                 <h4>{item.name}</h4>
-                <span>{currencyFormats(item.price)}</span>
-              </td>
-              <td>
-                <div>
-                  <button 
-                  type='button'
-                  onClick={() => console.log(`decrementar pedido`, item)}
+                <span className='price'>{currencyFormats(item.subtotal)}</span>
+              </div>
+
+              <div className='cartActions'>
+                {item.quantity === 1 && (
+                  <button
+                    type='button'
+                    onClick={() => delFoodFromCart(item)}
                   >
-                    <img src={minusImg} alt='Reduzir quantidade'/>
+                    <img src={deleteIcon} alt='Reduzir quantidade' />
                   </button>
+                )}
+
+                {item.quantity > 1 && (
+                  <button
+                    type='button'
+                    onClick={() => foodCartDecrement(item)}
+                  >
+                    <img src={minusImg} alt='Reduzir quantidade' />
+                  </button>
+                )}
+
                 <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                <button 
+
+                <button
                   type='button'
-                  onClick={() => console.log(`incrementar pedido`, item)}
-                  >
-                    <img src={plusImg} alt='Aumentar quantidade' />
-                  </button>
-                </div>
-                </td>
-              <td>
-                <h5>{currencyFormats(item.subtotal)}</h5>
-              </td>
-              <td>Deletar</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  onClick={() => foodCartIncrement(item)}
+                >
+                  <img src={plusImg} alt='Aumentar quantidade' />
+                </button>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
       <ConfirmOrder />
     </Container>
   )

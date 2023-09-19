@@ -12,17 +12,17 @@ import { Normalize } from 'styled-normalize'
 
 
 export default function App() {
-  
+
 
   return (
     <BrowserRouter>
       <Theme>
         <FoodProvider>
           <CartProvider>
-          <AppRoutes />
-          <ToastContainer autoClose={3000}/>
-          <GlobalStyle />
-          <Normalize />
+            <AppRoutes />
+            <ToastContainer autoClose={3000} />
+            <GlobalStyle />
+            <Normalize />
           </CartProvider>
         </FoodProvider>
       </Theme>
