@@ -12,14 +12,6 @@ export const Title = styled.h1`
   font-size: ${({theme}) => theme.fontSize['3xl']};
   font-weight: 500;
   text-transform: uppercase;
-
-  &::before {
-    content: '';
-    background: ${({theme}) => theme.colors.white};
-    width: 42px;
-    height: 5px;
-    flex-shrink: 0;
-    border-radius: 50%;
   }
 
   @media (max-width: 720px) {
